@@ -22,15 +22,17 @@ class AdaptativeGridDelegate extends SliverGridDelegateWithFixedCrossAxisCount {
     );
     final bool willFitAtLeastTwoItems = (minWidth * 2) > usableCrossAxisExtent;
     final double childCrossAxisExtent = usableCrossAxisExtent / crossAxisCount;
-    final double childMainAxisExtent = childCrossAxisExtent / childAspectRatio;
+    final double childMainAxisExtent =
+        mainAxisExtent ?? childCrossAxisExtent / childAspectRatio;
     final double width = willFitAtLeastTwoItems
         ? usableCrossAxisExtent
         : childMainAxisExtent;
+    final double height = (width / 16) * 9;
     return SliverGridRegularTileLayout(
       crossAxisCount: crossAxisCount,
-      mainAxisStride: childMainAxisExtent + mainAxisSpacing,
+      mainAxisStride: height + mainAxisSpacing,
       crossAxisStride: childCrossAxisExtent + crossAxisSpacing,
-      childMainAxisExtent: (width / 16) * 9,
+      childMainAxisExtent: height,
       childCrossAxisExtent: width,
       reverseCrossAxis: axisDirectionIsReversed(constraints.crossAxisDirection),
     );
