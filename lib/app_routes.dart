@@ -1,6 +1,8 @@
 import 'package:app/presentation/screens/bloc_state_screen.dart';
 import 'package:app/presentation/screens/custom_painter_screen.dart';
 import 'package:app/presentation/screens/home_screen.dart';
+import 'package:app/presentation/screens/performance_screen.dart';
+import 'package:app/presentation/screens/platform_channel_screen.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 class AppRoutes {
@@ -16,13 +18,23 @@ class AppRoutes {
       name: RouteNames.BLOC_STATE_SCREEN.name,
       page: () => BlocStateScreen(),
     ),
+    GetPage(
+      name: RouteNames.PLATFORM_CHANNEL_SCREEN.name,
+      page: () => PlatformChannelsScreen(),
+    ),
+    GetPage(
+      name: RouteNames.PERFORMANCE_SCREEN.name,
+      page: () => PerformanceScreen(),
+    ),
   ];
 }
 
 enum RouteNames {
   HOME("/"),
   CUSTOM_PAINTER_SCREEN("/custom-painter-screen"),
-  BLOC_STATE_SCREEN("/bloc-state-screen");
+  BLOC_STATE_SCREEN("/bloc-state-screen"),
+  PLATFORM_CHANNEL_SCREEN("/platform-channel-screen"),
+  PERFORMANCE_SCREEN("/performance-screen");
 
   final String name;
 

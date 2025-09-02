@@ -17,6 +17,17 @@ class HomeScreen extends StatelessWidget {
       image:
           "https://codeclusive.io/blog/introduction-to-flutter-bloc/images/bloc.png",
     ),
+    CardItem(
+      title: 'Platform Channel Screen',
+      route: RouteNames.PLATFORM_CHANNEL_SCREEN,
+      image:
+          "https://miro.medium.com/v2/resize:fit:1200/1*OJ2ebAo75tLVDKe0xOMeiA.png",
+    ),
+    CardItem(
+      title: 'Performance Screen',
+      route: RouteNames.PERFORMANCE_SCREEN,
+      image: "https://i.ytimg.com/vi/cVAGLDuc2xE/maxresdefault.jpg",
+    ),
   ];
 
   @override
@@ -25,7 +36,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: Text('Flutter Skills Showcase')),
       body: GridView.builder(
         padding: EdgeInsets.all(15),
-        gridDelegate: AdaptativeGridDelegate(minWidth: 100, crossAxisCount: 2),
+        gridDelegate: AdaptativeGridDelegate(
+          minWidth: 100,
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
