@@ -2,7 +2,7 @@ import 'package:app/app_routes.dart';
 import 'package:app/domain/models/card_item.dart';
 import 'package:app/domain/components/grid_delegates/adaptative_grid_delegate.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // Importe as telas.
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<CardItem> items = [
@@ -27,6 +27,12 @@ class HomeScreen extends StatelessWidget {
       title: 'Performance Screen',
       route: RouteNames.PERFORMANCE_SCREEN,
       image: "https://i.ytimg.com/vi/cVAGLDuc2xE/maxresdefault.jpg",
+    ),
+    CardItem(
+      title: 'Isolates Screen',
+      route: RouteNames.ISOLATE_SCREEN,
+      image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwIrU6ie-cYV4SqQvTc_YZJEwC5rYy2BUfJg&s",
     ),
   ];
 

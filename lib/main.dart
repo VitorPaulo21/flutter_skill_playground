@@ -17,9 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Skill Playground',
+      debugShowCheckedModeBanner: false,
       getPages: AppRoutes.routes,
       initialRoute: RouteNames.HOME.name,
       theme: ThemeData(
+        useMaterial3: false,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: HomeScreen(),
