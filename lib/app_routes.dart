@@ -1,3 +1,4 @@
+import 'package:app/presentation/screens/animation_screen.dart';
 import 'package:app/presentation/screens/bloc_state_screen.dart';
 import 'package:app/presentation/screens/custom_painter_screen.dart';
 import 'package:app/presentation/screens/home_screen.dart';
@@ -36,6 +37,10 @@ class AppRoutes {
       name: RouteNames.STREAM_BUILDER_ERROR_SCREEN.name,
       page: () => StreamBuilderErrorHandlerScreen(),
     ),
+    GetPage(
+      name: RouteNames.ANIMATION_SCREEN.name,
+      page: () => AnimationScreen(),
+    ),
   ];
 }
 
@@ -46,7 +51,8 @@ enum RouteNames {
   PLATFORM_CHANNEL_SCREEN("/platform-channel-screen"),
   PERFORMANCE_SCREEN("/performance-screen"),
   ISOLATE_SCREEN("/isolate-screen"),
-  STREAM_BUILDER_ERROR_SCREEN("/stream-builder-error-screen");
+  STREAM_BUILDER_ERROR_SCREEN("/stream-builder-error-screen"),
+  ANIMATION_SCREEN("/animation-screen");
 
   final String name;
 

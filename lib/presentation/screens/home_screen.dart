@@ -39,6 +39,11 @@ class HomeScreen extends StatelessWidget {
       route: RouteNames.STREAM_BUILDER_ERROR_SCREEN,
       image: "https://i.ytimg.com/vi/MkKEWHfy99Y/maxresdefault.jpg",
     ),
+    CardItem(
+      title: 'Animation Screen',
+      route: RouteNames.ANIMATION_SCREEN,
+      image: "https://miro.medium.com/1*kT7J_vQcySTcA1wnzle4tQ.gif",
+    ),
   ];
 
   @override
