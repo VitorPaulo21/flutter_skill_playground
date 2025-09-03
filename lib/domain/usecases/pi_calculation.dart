@@ -21,9 +21,9 @@ class PiCalculation {
   }
 
   static String calculatePiChudnovsky(
-    int digits,
-    void Function(int current, int total) progressCallback,
-  ) {
+    int digits, {
+    required void Function(int current, int total) progressCallback,
+  }) {
     final int extraDigits = 20;
     final BigInt scale = BigInt.from(10).pow(digits + extraDigits);
 
