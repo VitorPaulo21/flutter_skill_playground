@@ -18,6 +18,9 @@ class SkillRouterDelegate extends RouterDelegate<String>
   @override
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
+  @override
+  String? get currentConfiguration => _currentPath;
+
   void push(RouteNames route) {
     _history.add(_currentPath);
     _currentPath = route.name;
@@ -93,12 +96,12 @@ class SkillRouterDelegate extends RouterDelegate<String>
   }
 
   @override
-  Future<bool> popRoute() {
+  Future<bool> popRoute() async {
     if (_history.isNotEmpty || _currentPath != '/') {
       pop();
-      return Future.value(true);
+      return true;
     }
-    return Future.value(false);
+    return false;
   }
 }
 

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerDelegate: sl.get<SkillRouterDelegate>(),
-      routeInformationParser: SkillRouteInformationParser(),
+      routeInformationParser: sl.get<SkillRouteInformationParser>(),
       title: 'Flutter Skill Playground',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
