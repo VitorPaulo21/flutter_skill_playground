@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app/data/services/platform_service.dart';
 import 'package:app/locator.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class PlatformChannelsScreen extends StatefulWidget {
 
 class _PlatformChannelsScreenState extends State<PlatformChannelsScreen> {
   String _version = 'Unknown';
+  final bool isAndroidOrIos = Platform.isAndroid || Platform.isIOS;
 
   @override
   void initState() {
@@ -29,25 +32,37 @@ class _PlatformChannelsScreenState extends State<PlatformChannelsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Platform Channels Screen')),
-      body: Center(
+      body: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              _version,
-              style: GoogleFonts.dmSans(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 64,
-                fontWeight: FontWeight.w700,
+            if (!isAndroidOrIos)
+              Text(
+                "Função disponivel apenas para dispositivos Android ou IOS",
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: Colors.red[700]),
               ),
-            ),
-            Text(
-              "Operational System",
-              style: GoogleFonts.roboto(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 18,
+            if (isAndroidOrIos)
+              Text(
+                _version,
+                style: GoogleFonts.dmSans(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 64,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
+            if (isAndroidOrIos)
+              Text(
+                "Operational System",
+                style: GoogleFonts.roboto(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 18,
+                ),
+              ),
           ],
         ),
       ),
