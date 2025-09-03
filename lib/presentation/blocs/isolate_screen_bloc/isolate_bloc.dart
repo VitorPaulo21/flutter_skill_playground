@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:app/domain/usecases/pi_calculation.dart';
 import 'package:app/presentation/blocs/isolate_screen_bloc/isolate_event.dart';
 import 'package:app/presentation/blocs/isolate_screen_bloc/isolate_state.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -58,22 +59,20 @@ class IsolateBloc extends Bloc<IsolateEvent, IsolateState> {
     _receivePort = ReceivePort();
     final sendPort = _receivePort!.sendPort;
 
-    _isolate = await Isolate.spawn(_isolateEntry, {
-      'sendPort': sendPort,
-      'decimals': input,
+    _listenSubscription = _receivePort!.listen((message) {
+      add(
+        IsolateEvent$UpdateProgress(
+          progress: message['current']! / message['total']!,
+        ),
+      );
     });
 
-    _listenSubscription = _receivePort!.listen((message) {
-      if (message is String) {
-        add(IsolateEvent$Calculated(piValue: message));
-        _cleanupIsolate();
-      } else if (message is Map<String, int>) {
-        add(
-          IsolateEvent$UpdateProgress(
-            progress: message['current']! / message['total']!,
-          ),
-        );
-      }
+    compute<Map<String, dynamic>, String>(_isolateEntry, {
+      'sendPort': sendPort,
+      'decimals': input,
+    }).then((pi) {
+      add(IsolateEvent$Calculated(piValue: pi));
+      _cleanupIsolate();
     });
   }
 
@@ -98,20 +97,19 @@ class IsolateBloc extends Bloc<IsolateEvent, IsolateState> {
     _isolate = null;
   }
 
-  static void _isolateEntry(Map<String, dynamic> params) {
+  static String _isolateEntry(Map<String, dynamic> params) {
     final SendPort sendPort = params['sendPort'] as SendPort;
     final int decimals = params['decimals'] as int;
 
     try {
-      final pi = PiCalculation.calculatePiChudnovsky(decimals, (
-        current,
-        total,
-      ) {
-        sendPort.send({'current': current, 'total': total});
-      });
-      sendPort.send(pi);
+      return PiCalculation.calculatePiChudnovsky(
+        decimals,
+        progressCallback: (current, total) {
+          sendPort.send({'current': current, 'total': total});
+        },
+      );
     } catch (e) {
-      sendPort.send('Error: $e');
+      rethrow;
     }
   }
 }
