@@ -1,8 +1,8 @@
-import 'package:app/app_routes.dart';
 import 'package:app/domain/models/card_item.dart';
 import 'package:app/domain/components/grid_delegates/adaptative_grid_delegate.dart';
+import 'package:app/locator.dart';
+import 'package:app/presentation/router/skill_router_delegate.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<CardItem> items = [
@@ -10,6 +10,11 @@ class HomeScreen extends StatelessWidget {
       title: 'CustomPainter Basics',
       route: RouteNames.CUSTOM_PAINTER_SCREEN,
       image: "https://i.ytimg.com/vi/kp14Y4uHpHs/maxresdefault.jpg",
+    ),
+    CardItem(
+      title: 'Router 2.0 Screen',
+      route: RouteNames.ROUTER_2,
+      image: "https://i.ytimg.com/vi/_05zUd5Kdrw/sddefault.jpg",
     ),
     CardItem(
       title: 'Bloc State Management',
@@ -45,6 +50,8 @@ class HomeScreen extends StatelessWidget {
       image: "https://miro.medium.com/1*kT7J_vQcySTcA1wnzle4tQ.gif",
     ),
   ];
+
+  static final SkillRouterDelegate _router = sl.get();
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                onTap: () => Get.toNamed(item.route.name),
+                onTap: () => _router.push(item.route),
               ),
             ),
           );

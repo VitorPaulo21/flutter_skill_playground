@@ -1,8 +1,7 @@
-import 'package:app/app_routes.dart';
 import 'package:app/locator.dart';
-import 'package:app/presentation/screens/home_screen.dart';
+import 'package:app/presentation/router/skill_route_information_parser.dart';
+import 'package:app/presentation/router/skill_router_delegate.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 
 void main() {
   setupLocator();
@@ -12,19 +11,17 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
+      routerDelegate: sl.get<SkillRouterDelegate>(),
+      routeInformationParser: sl.get<SkillRouteInformationParser>(),
       title: 'Flutter Skill Playground',
       debugShowCheckedModeBanner: false,
-      getPages: AppRoutes.routes,
-      initialRoute: RouteNames.HOME.name,
       theme: ThemeData(
         useMaterial3: false,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
     );
   }
 }

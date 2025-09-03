@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:app/app_routes.dart';
+import 'package:app/presentation/router/skill_router_delegate.dart';
 
 class CardItem {
   final String title;
