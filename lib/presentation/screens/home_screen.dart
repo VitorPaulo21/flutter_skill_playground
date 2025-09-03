@@ -34,6 +34,11 @@ class HomeScreen extends StatelessWidget {
       image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwIrU6ie-cYV4SqQvTc_YZJEwC5rYy2BUfJg&s",
     ),
+    CardItem(
+      title: 'Stream Builder Error Handler',
+      route: RouteNames.STREAM_BUILDER_ERROR_SCREEN,
+      image: "https://i.ytimg.com/vi/MkKEWHfy99Y/maxresdefault.jpg",
+    ),
   ];
 
   @override
@@ -69,11 +74,13 @@ class HomeScreen extends StatelessWidget {
                       right: 0,
                       left: 0,
                       child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         alignment: Alignment.center,
                         height: 40,
                         color: Colors.black54,
                         child: Text(
                           item.title,
+                          textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
