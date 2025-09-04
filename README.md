@@ -17,14 +17,13 @@ Um playground interativo que demonstra diversas funcionalidades avançadas do Fl
 
 ### CustomPainter Screen
 - Implementação de CustomPainter personalizado
-- Criação de hexágonos com cores e posicionamento customizado
+- Representação da logo da For People
 - Demonstração de ClipPath e CustomPaint
 
 ### Router 2.0 Screen
 - Implementação completa do Router 2.0
 - RouterDelegate customizado com histórico de navegação
 - RouteInformationParser para parsing de URLs
-- Navegação declarativa e imperativa
 
 ### BLoC State Management
 - Implementação do padrão BLoC
@@ -34,7 +33,7 @@ Um playground interativo que demonstra diversas funcionalidades avançadas do Fl
 
 ### Platform Channels
 - Comunicação entre Flutter e código nativo
-- Serviços de logging e plataforma
+- Serviços de plataforma
 - Integração com APIs nativas
 
 ### Performance Screen
@@ -45,13 +44,12 @@ Um playground interativo que demonstra diversas funcionalidades avançadas do Fl
 ### Isolate Screen
 - Cálculo de Pi usando Isolates
 - Algoritmo Chudnovsky para cálculo de Pi
-- Processamento em background thread
+- Processamento em Isolate
 - Progress tracking e UI responsiva
 
 ### Animation Screen
 - Múltiplos AnimationControllers
 - Animações sequenciais e coordenadas
-- Curves personalizadas (elasticInOut, decelerate)
 - RepaintBoundary para otimização
 
 ### StreamBuilder Screen
@@ -75,26 +73,26 @@ Um playground interativo que demonstra diversas funcionalidades avançadas do Fl
 O projeto segue uma arquitetura limpa (Clean Architecture) com separação clara de responsabilidades:
 
 lib/
-├── data/ # Camada de Dados
-│ └── services/ # Serviços (Logging, Platform)
-├── domain/ # Camada de Domínio
-│ ├── components/ # Componentes reutilizáveis
-│ │ ├── grid_delegates/ # Delegates customizados
-│ │ └── painters/ # CustomPainters
-│ ├── models/ # Modelos de dados
-│ └── usecases/ # Casos de uso
-├── presentation/ # Camada de Apresentação
-│ ├── blocs/ # Gerenciamento de estado
-│ ├── router/ # Navegação Router 2.0
-│ ├── screens/ # Telas da aplicação
-│ └── widgets/ # Widgets reutilizáveis
-└── locator.dart # Configuração de DI
+    data/ # Camada de Dados
+        services/ # Serviços (Logging, Platform)
+    domain/ # Camada de Domínio
+        components/ # Componentes reutilizáveis
+            grid_delegates/ # Delegates customizados
+            painters/ # CustomPainters
+        models/ # Modelos de dados
+        usecases/ # Casos de uso
+    presentation/ # Camada de Apresentação
+        blocs/ # Gerenciamento de estado
+        router/ # Navegação Router 2.0
+        screens/ # Telas da aplicação
+        widgets/ # Widgets reutilizáveis
+    locator.dart # Configuração de DI
 
 
 ## 🛠️ Instalação e Uso
 
 ### Pré-requisitos
-- Flutter SDK 3.9.0 ou superior
+- Flutter SDK (Stable)
 - Dart SDK 3.9.0 ou superior
 - Android Studio / VS Code
 - Git
@@ -164,7 +162,6 @@ flutter pub upgrade
 - Controle total sobre navegação
 - Suporte a deep linking
 - Histórico de navegação personalizado
-- Melhor integração com web
 
 ### 3. BLoC para Gerenciamento de Estado
 **Decisão**: Uso do padrão BLoC ao invés de Provider ou setState
@@ -206,7 +203,7 @@ flutter pub upgrade
 - RepaintBoundary para otimização
 
 ### 5. CustomPainter Performance
-**Desafio**: Otimização de repaints
+**Desafio**: Otimização de repaints e formas especificas
 **Solução**:
 - shouldRepaint otimizado
 - ClipPath para formas específicas
