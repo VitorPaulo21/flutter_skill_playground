@@ -29,11 +29,31 @@ class CustomPainterScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Text(
-              "For People",
-              style: Theme.of(
-                context,
-              ).textTheme.headlineLarge?.copyWith(color: Color(0xFF076DDD)),
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Text(
+                    "for people",
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: Color(0xFF076DDD),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Text(
+                    "SOFTWARES",
+                    style: TextStyle(
+                      fontSize: 8,
+                      color: Color(0xFF076DDD),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
