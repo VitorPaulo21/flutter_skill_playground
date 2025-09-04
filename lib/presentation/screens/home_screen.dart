@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   final List<CardItem> items = [
     CardItem(
-      title: 'CustomPainter Basics',
+      title: 'CustomPainter Screen',
       route: RouteNames.CUSTOM_PAINTER_SCREEN,
       image: "https://i.ytimg.com/vi/kp14Y4uHpHs/maxresdefault.jpg",
     ),
@@ -17,13 +17,13 @@ class HomeScreen extends StatelessWidget {
       image: "https://i.ytimg.com/vi/_05zUd5Kdrw/sddefault.jpg",
     ),
     CardItem(
-      title: 'Bloc State Management',
+      title: 'Bloc Screen',
       route: RouteNames.BLOC_STATE_SCREEN,
       image:
           "https://codeclusive.io/blog/introduction-to-flutter-bloc/images/bloc.png",
     ),
     CardItem(
-      title: 'Platform Channel Screen',
+      title: 'Platform Channels Screen',
       route: RouteNames.PLATFORM_CHANNEL_SCREEN,
       image:
           "https://miro.medium.com/v2/resize:fit:1200/1*OJ2ebAo75tLVDKe0xOMeiA.png",
@@ -34,25 +34,31 @@ class HomeScreen extends StatelessWidget {
       image: "https://i.ytimg.com/vi/cVAGLDuc2xE/maxresdefault.jpg",
     ),
     CardItem(
-      title: 'Isolates Screen',
+      title: 'Isolate Screen',
       route: RouteNames.ISOLATE_SCREEN,
       image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwIrU6ie-cYV4SqQvTc_YZJEwC5rYy2BUfJg&s",
     ),
     CardItem(
-      title: 'Stream Builder Error Handler',
-      route: RouteNames.STREAM_BUILDER_ERROR_SCREEN,
-      image: "https://i.ytimg.com/vi/MkKEWHfy99Y/maxresdefault.jpg",
-    ),
-    CardItem(
-      title: 'Animation Screen',
+      title: 'AnimationController Screen',
       route: RouteNames.ANIMATION_SCREEN,
       image: "https://miro.medium.com/1*kT7J_vQcySTcA1wnzle4tQ.gif",
     ),
     CardItem(
-      title: 'Sliver Screen',
+      title: 'StreamBuilder Screen',
+      route: RouteNames.STREAM_BUILDER_ERROR_SCREEN,
+      image: "https://i.ytimg.com/vi/MkKEWHfy99Y/maxresdefault.jpg",
+    ),
+    CardItem(
+      title: 'Slivers Screen',
       route: RouteNames.SLIVER_SCREEN,
       image: "https://i.ytimg.com/vi/VhcxuShoW3k/maxresdefault.jpg",
+    ),
+    CardItem(
+      title: 'Dependency Injection',
+      route: RouteNames.DEPENDENCY_INJECTION_SCREEN,
+      image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw5fh7HByQFptrygpBDV3dzCLx9TSkgVwyzg&s",
     ),
   ];
 
