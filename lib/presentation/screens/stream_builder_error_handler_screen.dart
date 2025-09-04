@@ -70,52 +70,54 @@ class _StreamBuilderErrorHandlerScreenState
       appBar: AppBar(title: const Text('StreamBuilder Screen')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            StreamStatusIndicator(isActive: _isActive),
-            Gap(20),
-            Expanded(
-              child: StreamBuilder<int>(
-                stream: _stream,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting &&
-                      !snapshot.hasData) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                        Gap(16),
-                        Text(
-                          'Conectando ao stream...',
-                          style: TextStyle(color: Colors.grey),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    );
-                  }
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              StreamStatusIndicator(isActive: _isActive),
+              Gap(20),
+              Expanded(
+                child: StreamBuilder<int>(
+                  stream: _stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting &&
+                        !snapshot.hasData) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(),
+                          Gap(16),
+                          Text(
+                            'Conectando ao stream...',
+                            style: TextStyle(color: Colors.grey),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      );
+                    }
 
-                  if (snapshot.hasError) {
-                    return StreamErrorHandlerWidget(
-                      error: snapshot.error!,
-                      stackTrace: snapshot.stackTrace,
-                    );
-                  }
+                    if (snapshot.hasError) {
+                      return StreamErrorHandlerWidget(
+                        error: snapshot.error!,
+                        stackTrace: snapshot.stackTrace,
+                      );
+                    }
 
-                  return StreamCounter(value: snapshot.data!);
-                },
+                    return StreamCounter(value: snapshot.data!);
+                  },
+                ),
               ),
-            ),
-            ElevatedButton.icon(
-              onPressed: _restartStream,
-              icon: const Icon(Icons.refresh),
-              label: const Text('Reiniciar Stream'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                foregroundColor: Colors.white,
+              ElevatedButton.icon(
+                onPressed: _restartStream,
+                icon: const Icon(Icons.refresh),
+                label: const Text('Reiniciar Stream'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  foregroundColor: Colors.white,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
