@@ -1,6 +1,7 @@
 import 'package:app/presentation/screens/animation_screen.dart';
 import 'package:app/presentation/screens/bloc_state_screen.dart';
 import 'package:app/presentation/screens/custom_painter_screen.dart';
+import 'package:app/presentation/screens/dependency_injection_screen.dart';
 import 'package:app/presentation/screens/home_screen.dart';
 import 'package:app/presentation/screens/isolate_screen.dart';
 import 'package:app/presentation/screens/performance_screen.dart';
@@ -72,6 +73,8 @@ class SkillRouterDelegate extends RouterDelegate<String>
         return AnimationScreen();
       case RouteNames.SLIVER_SCREEN:
         return SliverScreen();
+      case RouteNames.DEPENDENCY_INJECTION_SCREEN:
+        return DependencyInjectionScreen();
     }
   }
 
@@ -120,7 +123,8 @@ enum RouteNames {
   ISOLATE_SCREEN("/isolate-screen"),
   STREAM_BUILDER_ERROR_SCREEN("/stream-builder-error-screen"),
   ANIMATION_SCREEN("/animation-screen"),
-  SLIVER_SCREEN("/sliver-screen");
+  SLIVER_SCREEN("/sliver-screen"),
+  DEPENDENCY_INJECTION_SCREEN("/dependency-injection-screen");
 
   final String name;
 

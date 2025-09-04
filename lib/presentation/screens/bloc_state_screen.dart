@@ -10,7 +10,7 @@ class BlocStateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Bloc State Management')),
+      appBar: AppBar(title: Text('Bloc Screen')),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

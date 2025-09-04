@@ -119,7 +119,7 @@ class _AnimationScreenState extends State<AnimationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Animation Screen")),
+      appBar: AppBar(title: Text("AnimationController Screen")),
       body: RepaintBoundary(
         child: RotationAnimation(
           animation: _animation6,

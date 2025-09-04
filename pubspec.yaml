@@ -68,6 +68,16 @@ flutter:
 
   assets:
     - assets\calculadora.png
+    - assets\custom-paint.jpg
+    - assets\navigator_2.jpg
+    - assets\bloc.png
+    - assets\platform_channel.png
+    - assets\performance.jpg
+    - assets\isolate.png
+    - assets\animation.gif
+    - assets\stream_builder.jpg
+    - assets\sliver.jpg
+    - assets\dependency_injection.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

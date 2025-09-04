@@ -54,8 +54,8 @@ class _SliverScreenState extends State<SliverScreen> {
                     Positioned.fill(
                       child: Hero(
                         tag: RouteNames.SLIVER_SCREEN.name,
-                        child: Image.network(
-                          'https://i.ytimg.com/vi/VhcxuShoW3k/maxresdefault.jpg',
+                        child: Image.asset(
+                          'assets/sliver.jpg',
                           fit: BoxFit.fitWidth,
                         ),
                       ),

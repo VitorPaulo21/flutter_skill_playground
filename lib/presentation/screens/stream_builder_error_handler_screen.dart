@@ -67,7 +67,7 @@ class _StreamBuilderErrorHandlerScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('StreamBuilder Error Handler')),
+      appBar: AppBar(title: const Text('StreamBuilder Screen')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
