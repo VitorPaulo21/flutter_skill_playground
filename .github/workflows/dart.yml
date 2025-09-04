@@ -32,4 +32,4 @@ jobs:
         run: flutter test --fail-fast --no-pub
 
       - name: Build Android APK
-        run: flutter build apk --release
+        run: flutter build web --release
