@@ -72,6 +72,7 @@ Um playground interativo que demonstra diversas funcionalidades avançadas do Fl
 
 O projeto segue uma arquitetura limpa (Clean Architecture) com separação clara de responsabilidades:
 
+```
 lib/
     data/ # Camada de Dados
         services/ # Serviços (Logging, Platform)
@@ -87,7 +88,7 @@ lib/
         screens/ # Telas da aplicação
         widgets/ # Widgets reutilizáveis
     locator.dart # Configuração de DI
-
+```
 
 ## 🛠️ Instalação e Uso
 
