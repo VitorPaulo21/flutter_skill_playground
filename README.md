@@ -74,20 +74,20 @@ O projeto segue uma arquitetura limpa (Clean Architecture) com separação clara
 
 ```
 lib/
-    data/ # Camada de Dados
-        services/ # Serviços (Logging, Platform)
-    domain/ # Camada de Domínio
-        components/ # Componentes reutilizáveis
-            grid_delegates/ # Delegates customizados
-            painters/ # CustomPainters
-        models/ # Modelos de dados
-        usecases/ # Casos de uso
-    presentation/ # Camada de Apresentação
-        blocs/ # Gerenciamento de estado
-        router/ # Navegação Router 2.0
-        screens/ # Telas da aplicação
-        widgets/ # Widgets reutilizáveis
-    locator.dart # Configuração de DI
+├── data/ # Camada de Dados
+│ └── services/ # Serviços (Logging, Platform)
+├── domain/ # Camada de Domínio
+│ ├── components/ # Componentes reutilizáveis
+│ │ ├── grid_delegates/ # Delegates customizados
+│ │ └── painters/ # CustomPainters
+│ ├── models/ # Modelos de dados
+│ └── usecases/ # Casos de uso
+├── presentation/ # Camada de Apresentação
+│ ├── blocs/ # Gerenciamento de estado
+│ ├── router/ # Navegação Router 2.0
+│ ├── screens/ # Telas da aplicação
+│ └── widgets/ # Widgets reutilizáveis
+└── locator.dart # Configuração de DI
 ```
 
 ## 🛠️ Instalação e Uso
