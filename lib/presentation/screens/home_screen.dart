@@ -49,6 +49,11 @@ class HomeScreen extends StatelessWidget {
       route: RouteNames.ANIMATION_SCREEN,
       image: "https://miro.medium.com/1*kT7J_vQcySTcA1wnzle4tQ.gif",
     ),
+    CardItem(
+      title: 'Sliver Screen',
+      route: RouteNames.SLIVER_SCREEN,
+      image: "https://i.ytimg.com/vi/VhcxuShoW3k/maxresdefault.jpg",
+    ),
   ];
 
   static final SkillRouterDelegate _router = sl.get();
@@ -79,7 +84,10 @@ class HomeScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      child: Image.network(item.image, fit: BoxFit.fitWidth),
+                      child: Hero(
+                        tag: item.route.name,
+                        child: Image.network(item.image, fit: BoxFit.fitWidth),
+                      ),
                     ),
                     Positioned(
                       bottom: 0,
