@@ -32,15 +32,20 @@ void main() {
   const String expectedListItem = "Item 200";
   const String goHomeButtom = "Voltar para Home";
   const String backButtomName = "Voltar";
-  const String forPeopleBrandName = "For People";
+  const String forPeopleBrandName = "for people";
 
   group('end-to-end test', () {
     setUpAll(() {
       setupLocator();
     });
 
+    tearDown(() async {
+      await Future.delayed(Duration(milliseconds: 100));
+    });
+
     testWidgets('Open CustomPainter Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(
         ValueKey(RouteNames.CUSTOM_PAINTER_SCREEN.name),
@@ -54,10 +59,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Router 2.0 Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(ValueKey(RouteNames.ROUTER_2.name));
 
@@ -98,10 +105,12 @@ void main() {
       final homeButton = find.text(goHomeButtom);
 
       await tester.tap(homeButton);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Bloc Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(ValueKey(RouteNames.BLOC_STATE_SCREEN.name));
 
@@ -132,10 +141,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Platform Channels Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(
         ValueKey(RouteNames.PLATFORM_CHANNEL_SCREEN.name),
@@ -149,10 +160,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Performance Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(ValueKey(RouteNames.PERFORMANCE_SCREEN.name));
 
@@ -170,10 +183,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Isolate Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(ValueKey(RouteNames.ISOLATE_SCREEN.name));
 
@@ -195,10 +210,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open AnimationController Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(ValueKey(RouteNames.ANIMATION_SCREEN.name));
 
@@ -210,10 +227,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open StreamBuilder Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(
         ValueKey(RouteNames.STREAM_BUILDER_ERROR_SCREEN.name),
@@ -252,16 +271,18 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Slivers Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(ValueKey(RouteNames.SLIVER_SCREEN.name));
 
       await tester.tap(cardItem);
 
-      await Future.delayed(Duration(seconds: 3));
+      await tester.pumpAndSettle();
 
       expect(find.byType(SliverScreen), findsOneWidget);
       expect(find.byType(SliverToBoxAdapter), findsOneWidget);
@@ -269,10 +290,12 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
 
     testWidgets('Open Dependency Injection Screen', (tester) async {
       await tester.pumpWidget(const MyApp());
+      await tester.pumpAndSettle();
 
       final cardItem = find.byKey(
         ValueKey(RouteNames.DEPENDENCY_INJECTION_SCREEN.name),
@@ -280,7 +303,7 @@ void main() {
 
       await tester.tap(cardItem);
 
-      await Future.delayed(Duration(seconds: 3));
+      await tester.pumpAndSettle();
 
       expect(find.byType(DependencyInjectionScreen), findsOneWidget);
 
@@ -302,6 +325,7 @@ void main() {
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
+      await tester.pumpAndSettle();
     });
   });
 }
