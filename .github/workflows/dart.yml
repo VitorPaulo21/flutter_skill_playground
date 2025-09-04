@@ -29,7 +29,7 @@ jobs:
         run: dart analyze --no-fatal-warnings
 
       - name: Run tests
-        run: dart test --fail-fast --no-pub
+        run: flutter test --fail-fast --no-pub
 
       - name: Build Android APK
         run: dart build apk --release
