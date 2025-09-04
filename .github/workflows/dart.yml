@@ -3,6 +3,7 @@ name: Flutter Build
 on:
   push:
     branches: [ "main", "macos_test" ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ "main" ]
 
@@ -18,9 +19,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: true
+          cache: 'gradle'
 
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+        with:
+          sdk: 'stable'
+
+      - name: Cache Flutter Pub Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            **/pubspec.lock
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -28,6 +41,8 @@ jobs:
           flutter-version: 3.35.1
           channel: 'stable'
           cache: true
+          cache-key: flutter-${{ runner.os }}-3.35.1
+          cache-path: ${{ runner.tool_cache }}/flutter
 
       - name: Accept Android SDK licenses
         run: yes | flutter doctor --android-licenses
@@ -35,11 +50,32 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Install CocoaPods (if needed)
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: |
+            ios/Pods
+            ~/.cocoapods
+          key: ${{ runner.os }}-cocoapods-${{ hashFiles('ios/Podfile', 'ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cocoapods-
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+
+      - name: Install Pods
         run: |
           cd ios
           pod install
           cd ..
+
+      - name: Cache Build Outputs
+        uses: actions/cache@v4
+        with:
+          path: build
+          key: ${{ runner.os }}-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-
 
       - name: Analyze project source
         run: dart analyze --no-fatal-warnings
@@ -55,3 +91,20 @@ jobs:
 
       - name: Build WEB
         run: flutter build web --debug --no-pub
+
+      - name: Zip iOS Build
+        if: github.ref_type == 'tag'
+        run: zip -r ios-build.zip build/ios/Debug-iphoneos
+
+      - name: Zip Web Build
+        if: github.ref_type == 'tag'
+        run: zip -r web-build.zip build/web
+
+      - name: Publish to GitHub Release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/app/outputs/flutter-apk/app-debug.apk
+            ios-build.zip
+            web-build.zip
