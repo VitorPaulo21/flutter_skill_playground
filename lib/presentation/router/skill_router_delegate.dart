@@ -6,6 +6,7 @@ import 'package:app/presentation/screens/isolate_screen.dart';
 import 'package:app/presentation/screens/performance_screen.dart';
 import 'package:app/presentation/screens/platform_channel_screen.dart';
 import 'package:app/presentation/screens/router_2_screen.dart';
+import 'package:app/presentation/screens/sliver_screen.dart';
 import 'package:app/presentation/screens/stream_builder_error_handler_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -69,6 +70,8 @@ class SkillRouterDelegate extends RouterDelegate<String>
         return StreamBuilderErrorHandlerScreen();
       case RouteNames.ANIMATION_SCREEN:
         return AnimationScreen();
+      case RouteNames.SLIVER_SCREEN:
+        return SliverScreen();
     }
   }
 
@@ -116,7 +119,8 @@ enum RouteNames {
   PERFORMANCE_SCREEN("/performance-screen"),
   ISOLATE_SCREEN("/isolate-screen"),
   STREAM_BUILDER_ERROR_SCREEN("/stream-builder-error-screen"),
-  ANIMATION_SCREEN("/animation-screen");
+  ANIMATION_SCREEN("/animation-screen"),
+  SLIVER_SCREEN("/sliver-screen");
 
   final String name;
 
