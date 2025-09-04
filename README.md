@@ -122,6 +122,9 @@ flutter run
 # Executar testes
 flutter test
 
+# Executar testes de Integração e E2E
+flutter test integration_test
+
 # Análise de código
 flutter analyze
 
