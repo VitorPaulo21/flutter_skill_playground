@@ -25,4 +25,9 @@ import UIKit
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+
+  private func getPlatformVersion(result: FlutterResult) {
+    let version = UIDevice.current.systemVersion
+    result("iOS \(version)")
+  }
 }
