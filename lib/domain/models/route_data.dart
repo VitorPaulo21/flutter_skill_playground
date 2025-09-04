@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 class RouteData {
   final String path;
-  final int id;
+  final LocalKey key;
 
-  RouteData(this.path, this.id);
+  RouteData(this.path, this.key);
 }

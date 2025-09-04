@@ -16,8 +16,7 @@ class SkillRouterDelegate extends RouterDelegate<String>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<String> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   final List<RouteData> _history = [];
-  RouteData _currentPath = RouteData('/', 0);
-  int _nextId = 1;
+  RouteData _currentPath = RouteData('/', UniqueKey());
 
   @override
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
@@ -27,7 +26,7 @@ class SkillRouterDelegate extends RouterDelegate<String>
 
   void push(RouteNames route) {
     _history.add(_currentPath);
-    _currentPath = RouteData(route.name, _nextId++);
+    _currentPath = RouteData(route.name, UniqueKey());
     notifyListeners();
   }
 
@@ -36,7 +35,7 @@ class SkillRouterDelegate extends RouterDelegate<String>
       _currentPath = _history.removeLast();
       notifyListeners();
     } else if (_currentPath.path != '/') {
-      _currentPath = RouteData('/', _nextId++);
+      _currentPath = RouteData('/', UniqueKey());
       notifyListeners();
     }
   }
@@ -45,7 +44,7 @@ class SkillRouterDelegate extends RouterDelegate<String>
     if (_history.isNotEmpty) {
       _history.removeLast();
     }
-    _currentPath = RouteData(path, _nextId++);
+    _currentPath = RouteData(path, UniqueKey());
     notifyListeners();
   }
 
@@ -82,34 +81,36 @@ class SkillRouterDelegate extends RouterDelegate<String>
 
   @override
   Widget build(BuildContext context) {
-    final allPaths = [..._history, _currentPath];
+    final allRoutes = [..._history, _currentPath];
 
     return Navigator(
       key: navigatorKey,
       pages: [
-        for (final path in allPaths)
-          MaterialPage(child: _getScreenForPath(path.path)), // sem chave
+        for (final routes in allRoutes)
+          MaterialPage(key: routes.key, child: _getScreenForPath(routes.path)),
       ],
-      onPopPage: (route, result) {
-        if (!route.didPop(result)) {
-          return false;
+      onDidRemovePage: (page) {
+        final removedKey = page.key;
+
+        if (removedKey == _currentPath.key) {
+          pop();
         }
-        pop();
-        return true;
+
+        _history.removeWhere((entry) => entry.key == removedKey);
       },
     );
   }
 
   @override
   Future<void> setNewRoutePath(String configuration) async {
-    _currentPath = RouteData(configuration, _nextId++);
+    _currentPath = RouteData(configuration, UniqueKey());
     _history.clear();
     notifyListeners();
   }
 
   @override
   Future<bool> popRoute() async {
-    if (_history.isNotEmpty || _currentPath != '/') {
+    if (_history.isNotEmpty || _currentPath.path != '/') {
       pop();
       return true;
     }
