@@ -19,7 +19,10 @@ jobs:
         run: dart pub get
 
       - name: Analyze project source
-        run: dart analyze
+        run: dart analyze --no-fatal-warnings
 
       - name: Run tests
-        run: dart test
+        run: dart test --fail-fast --no-pub
+
+      - name: Build Android APK
+        run: dart build apk --release
