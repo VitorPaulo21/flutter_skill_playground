@@ -227,12 +227,12 @@ flutter test
 flutter test --coverage
 ```
 
-## �� Plataformas Suportadas
+## Plataformas Suportadas
 
 - ✅ Android
 - ✅ iOS
 
-## 📄 Licença
+## Licença
 
 Este projeto é um challenge by [Coodesh](https://coodesh.com/)
 
