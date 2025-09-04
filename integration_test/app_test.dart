@@ -221,9 +221,11 @@ void main() {
 
       await tester.tap(cardItem);
 
-      await Future.delayed(Duration(seconds: 3));
+      final animationScreenFinder = find.byType(AnimationScreen);
 
-      expect(find.byType(AnimationScreen), findsOneWidget);
+      await _pumpUntilFound(tester, animationScreenFinder);
+
+      expect(animationScreenFinder, findsOneWidget);
 
       final backButon = find.byIcon(Icons.arrow_back);
       await tester.tap(backButon);
