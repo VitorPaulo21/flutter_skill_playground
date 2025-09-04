@@ -31,5 +31,5 @@ jobs:
       - name: Run tests
         run: flutter test --fail-fast --no-pub
 
-      - name: Build Android APK
+      - name: Build WEB
         run: flutter build web --release
