@@ -15,6 +15,7 @@ class BlocStateScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           FloatingActionButton(
+            key: ValueKey('increment'),
             heroTag: 'increment',
             onPressed: () {
               bloc.add(Increment());
@@ -23,6 +24,7 @@ class BlocStateScreen extends StatelessWidget {
           ),
           SizedBox(height: 10),
           FloatingActionButton(
+            key: ValueKey('decrement'),
             heroTag: 'decrement',
             onPressed: () {
               bloc.add(Decrement());

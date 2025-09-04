@@ -64,64 +64,67 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Flutter Skills Showcase')),
-      body: GridView.builder(
-        padding: EdgeInsets.all(15),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio:
-              MediaQuery.of(context).orientation == Orientation.landscape
-              ? 1.778
-              : 1.3,
-        ),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(15),
-            ),
-            elevation: 5,
-            child: InkWell(
-              onTap: () {
-                _router.push(item.route);
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadiusGeometry.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
-                      ),
-                      child: Hero(
-                        tag: item.route.name,
-                        child: Image.asset(item.image, fit: BoxFit.fitWidth),
+      body: SafeArea(
+        child: GridView.builder(
+          padding: EdgeInsets.all(15),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio:
+                MediaQuery.of(context).orientation == Orientation.landscape
+                ? 1.778
+                : 1.3,
+          ),
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return Card(
+              key: ValueKey(item.route.name),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(15),
+              ),
+              elevation: 5,
+              child: InkWell(
+                onTap: () {
+                  _router.push(item.route);
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadiusGeometry.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
+                        child: Hero(
+                          tag: item.route.name,
+                          child: Image.asset(item.image, fit: BoxFit.fitWidth),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: SizedBox(
-                      height: 23,
-                      child: FittedBox(
-                        child: Text(
-                          item.title,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.oswald(
-                            fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: SizedBox(
+                        height: 23,
+                        child: FittedBox(
+                          child: Text(
+                            item.title,
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.oswald(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

@@ -16,11 +16,13 @@ class Router2Screen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
+              key: ValueKey("telaA"),
               onPressed: () => _router.push(RouteNames.ROUTER_2_SCREEN_A),
               child: const Text('Navegar para Screen A'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
+              key: ValueKey("telaB"),
               onPressed: () => _router.push(RouteNames.ROUTER_2_SCREEN_B),
               child: const Text('Navegar para Screen B'),
             ),

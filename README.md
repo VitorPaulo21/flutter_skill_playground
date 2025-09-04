@@ -215,14 +215,24 @@ flutter pub upgrade
 O projeto inclui estrutura para testes com:
 - `bloc_test` para testes de BLoC
 - `mocktail` para mocking
+- `Unit Tests` para testes unitarios
+- `Widget Tests` para testes de widget
+- `integration_test` para testes de integração e E2E
 - Estrutura de pastas organizada para testes
+
+```
+integration_test/ # Testes de integração e E2E
+test/
+├── unit/ # Testes Unitarios
+└── widgets/ # Testes de Widgets
+```
 
 ```bash
 # Executar todos os testes
 flutter test
 
-# Executar testes com cobertura
-flutter test --coverage
+# Executar testes de Integração e E2E
+flutter test integration_test
 ```
 
 ## Plataformas Suportadas

@@ -7,10 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PiCalculationScreen extends StatelessWidget {
+class IsolateScreen extends StatelessWidget {
   final IsolateBloc bloc = IsolateBloc();
 
-  PiCalculationScreen({super.key});
+  IsolateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,7 @@ class PiCalculationScreen extends StatelessWidget {
                   ),
                   Gap(25),
                   TextFormField(
+                    key: ValueKey("textField"),
                     controller: bloc.controller,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(

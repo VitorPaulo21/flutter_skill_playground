@@ -1,3 +1,4 @@
+import 'package:app/domain/models/route_data.dart';
 import 'package:app/presentation/screens/animation_screen.dart';
 import 'package:app/presentation/screens/bloc_state_screen.dart';
 import 'package:app/presentation/screens/custom_painter_screen.dart';
@@ -14,18 +15,19 @@ import 'package:flutter/material.dart';
 class SkillRouterDelegate extends RouterDelegate<String>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<String> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-  final List<String> _history = [];
-  String _currentPath = '/';
+  final List<RouteData> _history = [];
+  RouteData _currentPath = RouteData('/', 0);
+  int _nextId = 1;
 
   @override
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
   @override
-  String? get currentConfiguration => _currentPath;
+  String? get currentConfiguration => _currentPath.path;
 
   void push(RouteNames route) {
     _history.add(_currentPath);
-    _currentPath = route.name;
+    _currentPath = RouteData(route.name, _nextId++);
     notifyListeners();
   }
 
@@ -33,8 +35,8 @@ class SkillRouterDelegate extends RouterDelegate<String>
     if (_history.isNotEmpty) {
       _currentPath = _history.removeLast();
       notifyListeners();
-    } else if (_currentPath != '/') {
-      _currentPath = '/';
+    } else if (_currentPath.path != '/') {
+      _currentPath = RouteData('/', _nextId++);
       notifyListeners();
     }
   }
@@ -43,7 +45,7 @@ class SkillRouterDelegate extends RouterDelegate<String>
     if (_history.isNotEmpty) {
       _history.removeLast();
     }
-    _currentPath = path;
+    _currentPath = RouteData(path, _nextId++);
     notifyListeners();
   }
 
@@ -66,7 +68,7 @@ class SkillRouterDelegate extends RouterDelegate<String>
       case RouteNames.PERFORMANCE_SCREEN:
         return PerformanceScreen();
       case RouteNames.ISOLATE_SCREEN:
-        return PiCalculationScreen();
+        return IsolateScreen();
       case RouteNames.STREAM_BUILDER_ERROR_SCREEN:
         return StreamBuilderErrorHandlerScreen();
       case RouteNames.ANIMATION_SCREEN:
@@ -86,17 +88,21 @@ class SkillRouterDelegate extends RouterDelegate<String>
       key: navigatorKey,
       pages: [
         for (final path in allPaths)
-          MaterialPage(key: ValueKey(path), child: _getScreenForPath(path)),
+          MaterialPage(child: _getScreenForPath(path.path)), // sem chave
       ],
-      onDidRemovePage: (page) {
-        popRoute();
+      onPopPage: (route, result) {
+        if (!route.didPop(result)) {
+          return false;
+        }
+        pop();
+        return true;
       },
     );
   }
 
   @override
   Future<void> setNewRoutePath(String configuration) async {
-    _currentPath = configuration;
+    _currentPath = RouteData(configuration, _nextId++);
     _history.clear();
     notifyListeners();
   }
